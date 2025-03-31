@@ -1,41 +1,38 @@
-// store.js
 import { configureStore } from '@reduxjs/toolkit';
-import taskReducer from './taskslice'; // Ensure this matches the file name correctly
+import taskReducer from './taskslice'; 
 
-// Load initial state from localStorage
+// Load from localStorage
 const loadState = () => {
     try {
         const serializedState = localStorage.getItem('tasks');
         if (serializedState === null) {
-            return undefined; // No saved tasks
+            return undefined; 
         }
-        return JSON.parse(serializedState); // Parse and return tasks
+        return JSON.parse(serializedState); 
     } catch (err) {
-        return undefined; // Error loading state
+        return undefined;
     }
 };
 
-// Save state to localStorage
+// Save to localStorage
 const saveState = (state) => {
     try {
         const serializedState = JSON.stringify(state);
-        localStorage.setItem('tasks', serializedState); // Save tasks
+        localStorage.setItem('tasks', serializedState); 
     } catch (err) {
-        // Ignore write errors
     }
 };
 
-// Create store with persisted state
+// Create
 const store = configureStore({
     reducer: {
         tasks: taskReducer,
     },
-    preloadedState: { tasks: loadState() }, // Load tasks into the state
+    preloadedState: { tasks: loadState() },
 });
 
-// Subscribe to store updates and save tasks to localStorage
 store.subscribe(() => {
-    saveState(store.getState().tasks); // Save tasks on every change
+    saveState(store.getState().tasks);
 });
 
 export default store;

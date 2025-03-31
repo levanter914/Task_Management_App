@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Button, TextField, FormHelperText, FormControl, Stack, Select, MenuItem } from '@mui/material';
 
 const FormInput = ({ todo, setTodo, clearInput, inputRef, isInputEmpty, addTodo }) => {
-    const [priority, setPriority] = React.useState('normal'); // Default priority
-    const [dueDate, setDueDate] = React.useState(''); // State for due date
+    const [priority, setPriority] = React.useState('normal'); 
+    const [dueDate, setDueDate] = React.useState(''); 
 
     return (
         <FormControl fullWidth>
-            {/* Input box in a separate row */}
+
             <Stack direction="row" spacing={2} alignItems="center">
                 <TextField
                     label="What's need to be done?"
@@ -21,7 +21,7 @@ const FormInput = ({ todo, setTodo, clearInput, inputRef, isInputEmpty, addTodo 
                 />
             </Stack>
 
-            {/* Other elements below the input box */}
+
             <Stack direction="row" spacing={2} alignItems="center" mt={2}>
                 <Select
                     value={priority}

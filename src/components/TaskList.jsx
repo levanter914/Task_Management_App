@@ -6,7 +6,6 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { styled } from '@mui/material/styles';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
-// Styled components
 const StyledList = styled(List)({
     width: '100%',
     backgroundColor: '#f5f5f5',

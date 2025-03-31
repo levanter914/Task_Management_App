@@ -12,12 +12,12 @@ const TaskManager = () => {
     const inputRef = useRef();
     const noteRef = useRef({});
     const [isInputEmpty, setInputEmpty] = useState(false);
-    const [filter, setFilter] = useState('all'); // State for filter
-    const [sortOrder, setSortOrder] = useState('date'); // Default sort order
+    const [filter, setFilter] = useState('all'); 
+    const [sortOrder, setSortOrder] = useState('date'); 
 
     const addTodo = (text) => {
         if (text.text.trim() !== '') {
-            dispatch(addTask(text)); // Ensure text has the right structure
+            dispatch(addTask(text)); 
             setNewTodo('');
             setInputEmpty(false);
         } else {
@@ -25,25 +25,23 @@ const TaskManager = () => {
         }
     };
 
-    // Filter tasks based on the selected filter
     const filteredTasks = tasks.filter((task) => {
         if (filter === 'completed') return task.isCompleted;
         if (filter === 'active') return !task.isCompleted;
-        return true; // Return all tasks for 'all' filter
+        return true;
     });
 
-    // Sort tasks based on the selected sort order
     const sortedTasks = filteredTasks.sort((a, b) => {
         if (sortOrder === 'date') {
-            return new Date(a.dueDate) - new Date(b.dueDate); // Sort by due date
+            return new Date(a.dueDate) - new Date(b.dueDate); 
         } else if (sortOrder === 'priority') {
-            const priorities = { high: 0, normal: 1, low: 2 }; // Define priority order
-            return priorities[a.priority] - priorities[b.priority]; // Sort by priority
+            const priorities = { high: 0, normal: 1, low: 2 }; 
+            return priorities[a.priority] - priorities[b.priority]; 
         }
-        return 0; // Default
+        return 0; 
     });
 
-    // Handle task reordering
+
     const reorderTasks = (result) => {
         if (!result.destination) return;
         dispatch(reorderTask({ sourceIndex: result.source.index, destIndex: result.destination.index }));
@@ -74,7 +72,7 @@ const TaskManager = () => {
                 saveTodo={(inx, newText) => dispatch(saveTask({ index: inx, newText }))}
                 noteRef={noteRef}
                 preventSubmit={(e) => e.key === 'Enter' && e.preventDefault()}
-                reorderTasks={reorderTasks} // Pass the reorder function
+                reorderTasks={reorderTasks} 
             />
         </form>
     );

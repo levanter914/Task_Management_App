@@ -1,4 +1,4 @@
-# Task Manager App
+# 📃Task Manager App 
 
 A simple and interactive task management application built with React, Redux, Material UI, and @hello-pangea/dnd for drag-and-drop functionality. This app allows users to add, edit, delete, and reorder tasks, as well as filter and sort them based on their due date and priority. Tasks are persisted in the browser's localStorage, so they remain available even after a page refresh.
 

@@ -21,7 +21,6 @@ const FormInput = ({ todo, setTodo, clearInput, inputRef, isInputEmpty, addTodo 
                 />
             </Stack>
 
-
             <Stack direction="row" spacing={2} alignItems="center" mt={2}>
                 <Select
                     value={priority}

@@ -3,7 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addTask, toggleComplete, editTask, saveTask, deleteTask, reorderTask } from '../redux/taskslice';
 import FormInput from './FormInput';
 import TaskList from './TaskList';
-import { Stack, Select, MenuItem } from '@mui/material';
+import { Stack, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+const ResponsiveFormControl = styled(FormControl)({
+    width: '100%', // Full width
+    maxWidth: '400px', // Limit max width
+    margin: '0 auto', // Center form control
+});
 
 const TaskManager = () => {
     const tasks = useSelector((state) => state.tasks);
@@ -41,7 +48,6 @@ const TaskManager = () => {
         return 0; 
     });
 
-
     const reorderTasks = (result) => {
         if (!result.destination) return;
         dispatch(reorderTask({ sourceIndex: result.source.index, destIndex: result.destination.index }));
@@ -58,11 +64,18 @@ const TaskManager = () => {
                 preventSubmit={(e) => e.key === 'Enter' && e.preventDefault()}
                 addTodo={addTodo}
             />
-            <Stack direction="row" spacing={2} sx={{ marginTop: '10px' }}>
-                <Select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} displayEmpty>
-                    <MenuItem value="date">Sort by Due Date</MenuItem>
-                    <MenuItem value="priority">Sort by Priority</MenuItem>
-                </Select>
+            <Stack direction="row" spacing={2} sx={{ marginTop: '10px', flexWrap: 'wrap' }}>
+                <ResponsiveFormControl size="small">
+                    <Select
+                        labelId="sort-select-label"
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                        displayEmpty
+                    >
+                        <MenuItem value="date">Sort by Due Date</MenuItem>
+                        <MenuItem value="priority">Sort by Priority</MenuItem>
+                    </Select>
+                </ResponsiveFormControl>
             </Stack>
             <TaskList
                 todos={sortedTasks}

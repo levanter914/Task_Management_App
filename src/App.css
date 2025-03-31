@@ -60,4 +60,18 @@ h1 {
   padding: 0 10px;
   white-space: pre;
   margin: 10px 0 0 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  border-radius: 8px;
 }
+
+
+.add-btn:hover {
+  background: linear-gradient(45deg, rgb(220, 191, 250) 20%, rgb(243, 219, 254) 80%);
+  transform: scale(1.1);
+  color: black;
+  transition-delay: 0.1s;
+}
+
